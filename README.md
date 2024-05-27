@@ -1,6 +1,6 @@
-# labs_CSI3140
+# lab3_CSI3140
 Student name: Quang Minh Le
 </br>
 Student number: 300165003
 </br>
-Each branch for a specific lab
+Implement a few core concepts of a 1D game of pacman
