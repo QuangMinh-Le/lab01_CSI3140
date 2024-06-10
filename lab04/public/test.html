@@ -9,9 +9,27 @@
    <script src="assets/yatzy_game.js"></script>
 </head>
 <body>
+   <h1>Yatzy Game </h1>
+   <p>Lab 4 - Group 20:</p>
+   <p>Quang Minh Le - 300165003</p>
+   <p>David Nguyen - 300232884</p>
+   <p></p>
+   <button onclick="testDiceRoll()">Roll Dice</button>
+   <div id="diceRollResult"></div>
 
-
-
-
+   <button onclick="testGameState()">Test Game State</button>
+   <div id="gameStateResult"></div>
 </body>
+<script>
+   function testDiceRoll() {
+       const result = rollDice();
+       document.getElementById('diceRollResult').innerText = 'Dice Roll Result: ' + result.join(', ');
+   }
+
+   function testGameState() {
+       const game = new YatzyGame();
+       game.rollDice();
+       document.getElementById('gameStateResult').innerText = 'Game State: ' + JSON.stringify(game);
+   }
+</script>
 </html>
