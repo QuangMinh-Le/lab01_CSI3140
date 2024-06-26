@@ -1,33 +1,27 @@
 <?php
+namespace Yatzy;
 
-$GLOBALS["appDir"] = resolve_path("app");
-
-function resolve_path($name)
+class YatzyGame
 {
-    if ($name == ".")
+    public $rollNumber;
+    public $diceValues;
+    public $keep;
+
+    public function __construct()
     {
-        $publicRoot = $_SERVER["DOCUMENT_ROOT"] . "/..";
-        $appRoot = $_SERVER["DOCUMENT_ROOT"];
-    }
-    else if ($_SERVER["DOCUMENT_ROOT"] != "")
-    {
-        $publicRoot = $_SERVER["DOCUMENT_ROOT"] . "/../$name";
-        $appRoot = $_SERVER["DOCUMENT_ROOT"] . "/$name";
-    }
-    else
-    {
-        return "../{$name}";
+        $this->rollNumber = 0;
+        $this->diceValues = [0, 0, 0, 0, 0];
+        $this->keep = [false, false, false, false, false];
     }
 
-    return file_exists($publicRoot) ? realpath($publicRoot) : realpath($appRoot);
+    public function rollDice()
+    {
+        $dice = new Dice();
+        for ($i = 0; $i < 5; $i++) {
+            if (!$this->keep[$i]) {
+                $this->diceValues[$i] = $dice->roll();
+            }
+        }
+        $this->rollNumber++;
+    }
 }
-
-spl_autoload_register(function ($fullName) {
-    $parts = explode("\\", $fullName);
-    $len = count($parts);
-    $className = $parts[$len - 1];
-    if (file_exists($GLOBALS["appDir"] . "/models/{$className}.php"))
-    {
-      require_once $GLOBALS["appDir"] . "/models/{$className}.php";
-    }
-});
