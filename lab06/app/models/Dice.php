@@ -3,8 +3,8 @@ namespace Yatzy;
 
 class Dice
 {
-    private $min;
-    private $max;
+    public $min;
+    public $max;
 
     public function __construct($min = 1, $max = 6)
     {
